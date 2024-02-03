@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./main.css";
+import { AddressContext } from "./Components/AddressContext";
+import Header from "./Components/Header";
+import Home from "./Home";
+import Top from "./Top";
+import FeeCalculation from "./FeeCalculation";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AddressContext.Provider value={{}}>
+      <BrowserRouter>
+        <div className="min-h-screen bg-black text-white flex w-full flex-col">
+          <Header />
+          <div className="app-main">
+            <div className="app-main__outer">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Home key={Home} />
+                      {/* <About />
+                      <HowToBuy />
+                      <TokenomicsSection />
+                      <Roadmap />
+                      <Team /> */}
+                    </>
+                  }
+                />
+                <Route path="/topAddresses" element={<Top key={Top} />} />
+                <Route
+                  path="/feeCalculation"
+                  element={<FeeCalculation key={FeeCalculation} />}
+                />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
+    </AddressContext.Provider>
   );
 }
 

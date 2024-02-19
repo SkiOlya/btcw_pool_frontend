@@ -14,7 +14,7 @@ const Header = () => {
     <div className="app-header bg-gray-2 flex items-center z-50 justify-center py-2 px-2 sm:px-4">
       <div className="flex mr-6">
         <img width="50" className="" src={logo} alt="logo"></img>
-        <img width="200" className="mx-2" src={logo_text} alt="logo_text"></img>
+        <img width="300" className="mx-2" src={logo_text} alt="logo_text"></img>
       </div>
 
       <div

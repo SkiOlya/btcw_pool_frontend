@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+input {
+    caret-color: #030303;
+}
+
+.container_byu {
+    position: relative;
+    /* width: 350px;
+    height: 500px; */
+    border-radius: 20px;
+    padding: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin: 10px;
+    box-sizing: border-box;
+    /* background: #ecf0f3; */
+    box-shadow: 5px 5px 20px #28a0f0, -5px -5px 20px #28a0f0;
+}
+
+.brand-logo {
+    height: 100px;
+    width: 100px;
+    background: url("https://img.icons8.com/color/100/000000/twitter--v2.png");
+    margin: auto;
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 7px 7px 10px #28a0f0, -7px -7px 10px #28a0f0;
+}
+
+.brand-title {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #e2e8f0;
+    letter-spacing: 1px;
+}
+
+.inputs {
+    text-align: left;
+    margin-top: 5px;
+}
+
+label,
+input,
+button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+label {
+    margin-bottom: 4px;
+    font-size: 1.0rem;
+}
+
+label:nth-of-type(2) {
+    margin-top: 12px;
+}
+label:nth-of-type(3) {
+    margin-top: 12px;
+}
+
+.container_byu_input::placeholder {
+    color: gray;
+}
+
+.container_byu_input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 5px #cbced1, inset -6px -6px 5px white;
+    color: #333;
+}
+
+.container_byu_input_disabled {
+    background: #c2c6c9; /* Серый цвет для фона */
+    /* color: #808080; Серый цвет для текста */
+    cursor: not-allowed; /* Стрелка курсора изменяется на "не разрешено" */
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    color: #333;
+}
+
+.byu_input-icon {
+    margin-right: 10px;
+    height: 100%;
+}
+
+.byu_input {
+    background-color: transparent;
+}
+
+.byu_input:disabled {
+    background-color: #c2c6c9; /* Серый цвет для фона */
+    /* color: #808080; Серый цвет для текста */
+    cursor: not-allowed; /* Стрелка курсора изменяется на "не разрешено" */
+}
+
+.container_byu_button {
+    color: white;
+    margin-top: 20px;
+    /* background: #1DA1F2; */
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 900;
+    box-shadow: 6px 6px 6px #28a0f0, -6px -6px 6px #28a0f0;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.container_byu_button:hover {
+    box-shadow: 6px 6px 16px #28a0f0, -6px -6px 16px #28a0f0;
+    transform: translateY(-2px);
+}
+
+.container_byu_button:active {
+    box-shadow: 0 0 20px #28a0f0, inset 0 0 20px #28a0f0;
+    transform: translateY(2px);
+}
+
+.container_byu_button:disabled {
+    background-color: #c2c6c9; /* Серый цвет фона для отключенной кнопки */
+    /* color: #666; Темно-серый цвет текста */
+    cursor: not-allowed; /* Курсор в виде знака запрета */
+    /* opacity: 0.5; Уменьшение прозрачности */
+}
+
+.container_animation {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    list-style-type: none;
+    display: flex;
+    gap: 0px;
+}
+
+.rocket-container {
+    /* position: absolute;
+    width: 100%; */
+    overflow: hidden;
+}
+
+.rocket-animation {
+    position: absolute;
+    left: 0;
+    /* CSS для анимации ракеты */
+    animation: rocketMove 6s linear forwards;
+    animation-iteration-count: 1;
+}
+
+.rocket-animation-hidden {
+    visibility: hidden;
+    /* или display: none; в зависимости от нужного эффекта */
+    position: fixed;
+    /* чтобы избежать влияния на layout страницы */
+}
+
+
+@keyframes rocketMove {
+    0% {
+        transform: translateX(-100%);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateX(100vw);
+        visibility: hidden;
+    }
+}
+
+.letter {
+    /* Ваши стили для букв */
+    opacity: 1;
+    color: white;
+    /* margin-right: -17px; */
+}
+
+.letter.animate {
+    animation: fadeInLetter 1s forwards;
+}
+
+@keyframes fadeInLetter {
+    0% {
+        opacity: 1;
+        color: red;
+        transform: scale(1);
+    }
+
+    60% {
+        opacity: 1;
+        color: red;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: 1;
+        color: white;
+        transform: scale(1);
+    }
+}
+
+/* .text-animation li.letter {
+    opacity: 0;
+    color: red;
+    margin-right: -17px;
+    animation: none;
+    display: inline-block;
+}
+
+.text-animation.start li.letter {
+    animation-name: bubbly;
+    animation-duration: calc(var(--i) * 2.5s);
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes bubbly {
+    0% {
+        transform: scale(0);
+    }
+
+    60% {
+        opacity: 1;
+        color: red;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: 1;
+        color: white;
+        transform: scale(1);
+    }
+} */

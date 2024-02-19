@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Home from "./Home";
 import Top from "./Top";
 import FeeCalculation from "./FeeCalculation";
+import Poolblocks from "./Poolblocks"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                     </>
                   }
                 />
+                <Route path="/poolblocks" element={<Poolblocks key={Poolblocks} />} />
                 <Route path="/topAddresses" element={<Top key={Top} />} />
                 <Route
                   path="/feeCalculation"

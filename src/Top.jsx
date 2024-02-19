@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import ScrollToTopButton from './Components/ScrollToTopButton';
+
 const StatisticsTable = ({
   statistics,
   onAddressClick,
@@ -106,19 +108,20 @@ const Top = () => {
   const [addressStats, setAddressStats] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     // Загрузка статистики при монтировании компонента
     fetchStatistics();
   }, [currentPage]);
 
   const fetchStatistics = async () => {
-    console.log("Начинаю запрос ");
     const today = new Date();
     const formattedDate = today.toISOString().slice(0, 10);
     setSelectedDate(formattedDate);
     try {
+      setIsLoading(true); 
       const response = await fetch(
-        `http://83.147.245.64/api/aggregated-data?page=${currentPage}&limit=${itemsPerPage}` //185.124.108.45    83.147.245.64
+        `https://utxopool.com/api/aggregated-data?page=${currentPage}&limit=${itemsPerPage}` 
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -126,8 +129,10 @@ const Top = () => {
       const result = await response.json();
       setStatistics(result.data);
       setTotalItems(result.totalItems);
+      setIsLoading(false);
     } catch (error) {
       console.error("Ошибка при загрузке данных: ", error);
+      setIsLoading(false);
     }
   };
 
@@ -141,7 +146,7 @@ const Top = () => {
 
   const fetchData = async (startDate, endDate, address) => {
     const response = await fetch(
-      `http://83.147.245.64/api/statisticsaddress?startdate=${startDate}&enddate=${endDate}&address=${address}` //localhost:8080
+      `https://utxopool.com/api/statisticsaddress?startdate=${startDate}&enddate=${endDate}&address=${address}` 
     );
     const rawData = await response.json();
     // Преобразование массива массивов в массив объектов
@@ -171,29 +176,55 @@ const Top = () => {
       id="home-section"
       className="pt-18 z-0 p-2 my-2 w-full rounded-3xl bg-[#060030]"
     >
-      <div className="text-center space-y-12 "></div>
+      <div className="text-center space-y-12 ">
+        <h1>Top mining addresses</h1>
+      </div>
       <div className="row">
         <div className="col-10 col-xl-7">
           <h2>Request Date: {selectedDate}</h2>
-          <h1>Statistics</h1>
-          <Pagination
-            totalItems={totalItems} // Общее количество элементов
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-          <StatisticsTable
-            statistics={statistics}
-            onAddressClick={handleAddressClick}
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
-          />
-          <Pagination
-            totalItems={totalItems} // Общее количество элементов
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+          {isLoading ? (
+            <div className="container">
+              <div className="loader">
+                <div className="ball moving"></div>
+                <div className="balls">
+                  <div className="ball"></div>
+                  <div className="ball"></div>
+                  <div className="ball"></div>
+                  <div className="ball"></div>
+                  <div className="ball moving"></div>
+                </div>
+              </div>
+
+              <svg>
+                <filter id="goo">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                </filter>
+              </svg>
+            </div>
+          ) : (
+            <>
+              <h1>Statistics</h1>
+              <Pagination
+                totalItems={totalItems} // Общее количество элементов
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+              <StatisticsTable
+                statistics={statistics}
+                onAddressClick={handleAddressClick}
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+              />
+              <Pagination
+                totalItems={totalItems} // Общее количество элементов
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </>
+          )}
         </div>
         <div className="col-5 col-xl-3">
           {selectedAddress && (
@@ -205,6 +236,7 @@ const Top = () => {
           )}
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 };

@@ -127905,6 +127905,13 @@ button.btn.btn-network img {
         font-size: 1rem;
     }
 
+    .menu>span {
+        border-width: 2px;
+        border-radius: 0.5rem;
+        padding: .5rem;
+        font-size: 1rem;
+    }
+
     .app-header .app-header-right {
         flex-direction: column;
         margin-left: auto;
@@ -128200,3 +128207,50 @@ button.btn.btn-network img {
     text-decoration: none;
     /* Убрать подчеркивание при наведении */
 }
+
+.info-text {
+    color: #b6b1b1; /* Задаем серый цвет текста */
+    font-size: 16px; /* Уменьшаем размер шрифта */
+}
+
+.flex-container {
+    position: relative;
+    display: flex; /* Заставляет дочерние элементы располагаться горизонтально */
+    justify-content: space-around; /* Равномерно распределяет дочерние элементы по горизонтали с равными отступами между ними */
+    align-items: center; /* Центрирует дочерние элементы по вертикали */
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку, если не хватает места */
+}
+
+  .diagonal-divider {
+    width: 60px; /* Ширина линии */
+    height: 2px;
+    margin-top: 50px;
+    margin-left: 40px;
+    position: absolute;
+    /* height: 100%;  */
+    background-color: white; /* Цвет линии */
+    transform: rotate(-80deg); /* Поворот линии для создания наклона */
+    transform-origin: bottom left; /* Точка, относительно которой происходит поворот */
+  }
+
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff; /* Синий цвет фона */
+    color: #fff; /* Белый цвет текста */
+    border-radius: 50%; /* Круглая форма */
+    width: 60px; /* Ширина */
+    height: 60px; /* Высота */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.4s, transform 0.4s; /* Анимация */
+  }
+  
+  .scroll-to-top:hover {
+    opacity: 1; /* Полная видимость при наведении */
+    transform: scale(1.1); /* Увеличение размера при наведении */
+  }

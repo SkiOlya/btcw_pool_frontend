@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-// import styles_bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+import Modal from "./Components/Modal";
 import "./home_container.css";
 import "./home_tooltip.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,13 @@ const Home = () => {
   const [stats, setStats] = useState({ count: 0, totalReward: 0 });
   const [valueUtxo, setValueUtxo] = useState('');
   const [valueSum, setValueSum] = useState(0);
+  const [valueAddress, setValueAddress] = useState('');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
   const handleChangeUtxo = (e) => {
     const utxoValue = e.target.value;
@@ -28,7 +35,7 @@ const Home = () => {
         .then(response => response.json())
         .then(data => setStats(data))
         .catch(error => console.error('Error fetching mining stats:', error));
-}, []);
+  }, []);
 
   return (
     <div
@@ -62,7 +69,7 @@ const Home = () => {
             data-headlessui-state="open"
           >
             <h1>
-              6000000
+              10000000
             </h1>
             <h3 className="info-text">
               Pool utxo
@@ -171,18 +178,25 @@ const Home = () => {
                 className="byu_input"
                 type="text"
                 placeholder="0"
-                // value={valueUSDT}
-                // onChange={handleChangeUSDT}
+                value={valueAddress}
               />
             </div>
 
-            <button className="container_byu_button " disabled type="submit">
+            <button className="container_byu_button " disabled type="submit" onClick={() => {
+                        openModal();
+                      }}>
               SOON...
             </button>
+            {/* disabled */}
           </div>
         </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+        {/* <NFTInformation gpu={selectedGPU} networks={networks} /> */}
+        <h1>Welcome to BTCW UTXO Pool !</h1>
+        {valueAddress}
+      </Modal>
     </div>
   );
 };

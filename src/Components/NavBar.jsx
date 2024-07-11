@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,20 +13,20 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const ActiveToolsStyle = styled.span`
-  &.active {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
-    border-color: #28a0f0;
-    color: #28a0f0;
-  }
-`;
+// const ActiveToolsStyle = styled.span`
+//   &.active {
+//     font-size: 1.5rem;
+//     line-height: 1.75rem;
+//     border-color: #28a0f0;
+//     color: #28a0f0;
+//   }
+// `;
 
 const DropdownMenu = styled.div`
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 280px;
+  min-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 12;
   border-radius: 0.375rem;
@@ -63,7 +63,7 @@ const Dropdown = styled.span`
 `;
 const NavBar = () => {
   const location = useLocation();
-  const isToolActive = location.pathname.startsWith("/topAddresses") || location.pathname.startsWith("/feeCalculation");
+  const isToolActive = location.pathname.startsWith("/topAddresses") || location.pathname.startsWith("/feeCalculation")  || location.pathname.startsWith("/transactionAccelerator");
 
 
   return (
@@ -104,6 +104,12 @@ const NavBar = () => {
         </ActiveToolsStyle> */}
 
         <DropdownMenu>
+        <StyledNavLink
+            to="/txaccelerator"
+            className="hover:no-underline font-medium text-lg"
+          >
+            Transaction Accelerator
+          </StyledNavLink>
           <StyledNavLink
             to="/topAddresses"
             className="hover:no-underline font-medium text-lg"

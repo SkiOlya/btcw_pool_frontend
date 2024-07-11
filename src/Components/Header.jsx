@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState } from "react";
 import logo from "../icons/logo.svg";
 import logo_text from "../icons/BTCW pool.svg";
 import ProfileData from "./ProfileData";

@@ -74,30 +74,83 @@ const AddressStatisticsTable = ({ statistics }) => {
   );
 };
 
-const Pagination = ({
-  totalItems,
-  itemsPerPage,
-  currentPage,
-  onPageChange,
-}) => {
+const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => {
   const pageCount = Math.ceil(totalItems / itemsPerPage);
+  const pageLimit = 8; // Количество страниц, которое вы хотите отображать вокруг текущей страницы
+
+  const generatePageNumbers = () => {
+    const pages = [];
+    const sidePages = pageLimit >> 1; // Количество страниц с каждой стороны от текущей страницы
+    let start = Math.max(currentPage - sidePages, 1);
+    let end = Math.min(currentPage + sidePages, pageCount);
+
+    // Добавить первую страницу и точки после неё
+    if (start > 1) {
+      pages.push(1);
+      if (start > 2) {
+        pages.push('...');
+      }
+    }
+
+    // Добавить текущую страницу и страницы вокруг неё
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    // Добавить точки и последнюю страницу после текущей
+    if (end < pageCount) {
+      if (end < pageCount - 1) {
+        pages.push('...');
+      }
+      pages.push(pageCount);
+    }
+
+    return pages;
+  };
+
+  const pagesToShow = generatePageNumbers();
+
   return (
     <div className="pagination-container">
-      {Array.from({ length: pageCount }, (_, index) => index + 1).map(
-        (page) => (
-          <button
-            className="btn btn-primary"
-            key={page}
-            onClick={() => onPageChange(page)}
-            disabled={currentPage === page}
-          >
-            {page}
-          </button>
-        )
-      )}
+      {pagesToShow.map((page, index) => (
+        <button
+          key={index}
+          className={`btn btn-primary ${currentPage === page ? 'active' : ''}`}
+          onClick={() => typeof page === 'number' && onPageChange(page)}
+          disabled={currentPage === page}
+        >
+          {page}
+        </button>
+      ))}
     </div>
   );
 };
+
+
+// const Pagination = ({
+//   totalItems,
+//   itemsPerPage,
+//   currentPage,
+//   onPageChange,
+// }) => {
+//   const pageCount = Math.ceil(totalItems / itemsPerPage);
+//   return (
+//     <div className="pagination-container">
+//       {Array.from({ length: pageCount }, (_, index) => index + 1).map(
+//         (page) => (
+//           <button
+//             className="btn btn-primary"
+//             key={page}
+//             onClick={() => onPageChange(page)}
+//             disabled={currentPage === page}
+//           >
+//             {page}
+//           </button>
+//         )
+//       )}
+//     </div>
+//   );
+// };
 
 const Top = () => {
   const [totalItems, setTotalItems] = useState(0);

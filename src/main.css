@@ -127665,7 +127665,8 @@ button.btn.btn-network img {
 .btn-primary {
     color: #fff;
     background-color: #3f6ad8;
-    border-color: #3f6ad8
+    border-color: #3f6ad8;
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -128254,3 +128255,56 @@ button.btn.btn-network img {
     opacity: 1; /* Полная видимость при наведении */
     transform: scale(1.1); /* Увеличение размера при наведении */
   }
+
+  .my_modal {
+    /* width: 100vh;
+    height: 100vh; */
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.my_modal.active {
+    z-index: 20;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.my_modal__content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    /* height: 483px; */
+    width: 530px;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    word-wrap: break-word; /* Позволяет переносить длинные слова на новую строку */
+    overflow-wrap: break-word; /* Обеспечивает перенос строк внутри элемента */
+}
+
+.my_modal__content.active {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    width: auto; 
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Центрирует кнопку по горизонтали */
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+ }

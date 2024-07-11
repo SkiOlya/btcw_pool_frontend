@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTwitter,
   faTelegram,
-  faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
 import NavBar from "./NavBar";
 

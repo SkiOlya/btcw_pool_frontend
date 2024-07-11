@@ -6,6 +6,7 @@ import Home from "./Home";
 import Top from "./Top";
 import FeeCalculation from "./FeeCalculation";
 import Poolblocks from "./Poolblocks"
+import TransactionAccelerator from "./TransactionAccelerator"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                   path="/feeCalculation"
                   element={<FeeCalculation key={FeeCalculation} />}
                 />
+                <Route path="/txaccelerator" element={<TransactionAccelerator key={TransactionAccelerator} />} />
               </Routes>
             </div>
           </div>
